@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <h1>컴퓨터와 가위 바위 보 하기</h1>
+    <script>
+        // 사용자와 컴퓨터가 가위, 바위, 보를 하는 페이지
+        
+        // 사용자는 가위, 바위, 보 중 하나를 입력
+        let user = prompt("가위, 바위, 보 중 하나 선택");
+        
+        // 컴퓨터는 가위, 바위, 보 중 무작위로 하나를 선택
+        let computer = Math.ceil(Math.random() * 3);
+        
+        // 사용자 또는 컴퓨터가 고른 것을 하나의 기준으로 맞춰줘야 비교할 수 있음
+        // 사용자가 고른 것을 컴퓨터가 고르는 방식으로 바꿔줌
+        if(user == "가위") {
+            user = 1;
+        } else if(user == "바위") {
+            user = 2;
+        } else {
+            user = 3;
+        }
+
+        document.write("<div><h3><i>👤</i> 사용자</h3><img src=\"game_" + user + ".png\"></div>");
+        
+        /*
+        if(computer == 1) {
+            document.write("컴퓨터 = 가위<br>");    
+        } else if(computer == 2) {
+            document.write("컴퓨터 = 바위<br>");    
+        } else {
+            document.write("컴퓨터 = 보<br>");    
+        }
+        */
+
+        document.write("<div><h3><i>💻</i> 컴퓨터</h3><img src=\"game_" + computer + ".png\"></div>");
+
+        
+        // 사용자가 고른 것과 컴퓨터가 고른 것을 비교해서 승리 여부(결과)를 만드세요.
+        
+
+
+        // 승리 여부는 사용자 또는 컴퓨터를 하나의 기준으로 잡고 그 기준의 결과를 만들어야 함
+        // 기준이 사람 -> 비겼다. 사람이 이겼다. 사람이 졌다.
+        // 기준이 컴퓨터 -> 비겼다. 컴퓨터가 이겼다. 컴퓨터가 졌다.
+
+        // 결과는 사람이 확인할 것이므로 사람을 기준으로 결과를 만드는게 좋음
+        // 사람이 이겼나요? 의 의미를 담고 있는 isUserWin 변수 선엉ㄴ
+        let isUserWin;
+
+        if(user == 1) {
+            // 사람이 가위를 냈을 때
+            if(computer == 1) {
+                // 컴퓨터가 가위를 냈다면 비겼다.
+                isUserWin = 0;
+            } else if(computer == 2) {
+                // 컴퓨터가 바위를 냈다면 졌다.
+                isUserWin = -1;
+            } else {
+                // 컴퓨터가 보를 냈다면 이겼다.
+                isUserWin = 1;
+            }
+        } else if(user == 2) {
+            // 사람이 바위를 냈을 때
+            if(computer == 1) {
+                // 컴퓨터가 가위를 냈다면 이겼다.
+                isUserWin = 1;
+            } else if(computer == 2) {
+                // 컴퓨터가 바위를 냈다면 비겼다.
+                isUserWin = 0;
+            } else {
+                // 컴퓨터가 보를 냈다면 졌다.
+                isUserWin = -1;
+            }
+        } else {
+            // 사람이 보를 냈을 때
+            if(computer == 1) {
+                // 컴퓨터가 가위를 냈다면 졌다.
+                isUserWin = -1;
+            } else if(computer == 2) {
+                // 컴퓨터가 바위를 냈다면 이겼다.
+                isUserWin = 1;
+            } else {
+                // 컴퓨터가 보를 냈다면 비겼다.
+                isUserWin = 0;
+            }
+        }
+        
+        if(isUserWin == 1) {
+            document.write("사용자가 이겼습니다.");
+        } else if(isUserWin == -1) {
+            document.write("사용자가 졌습니다.");
+        } else {
+            document.write("비겼습니다.");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <script>
+        function sum(num1, num2) {
+            let total = 0;
+            for(let i=num1; i<=num2; i++) {
+                total = total + i;
+            }
+            document.write(total + "<br>");
+        }
+        sum(1, 5);
+        sum(2, 7);
+
+        function increase(val) {
+            val = val + 1;
+            document.write(val + "<br>");
+        }
+        increase(2);
+
+        let num = 3;
+        console.log("num = " + num + "<br>");
+        // 인자로 변수를 넣으면 변수에 어떤 변화가 생긴다 라고 생각을 하는데 인자로 변순를 넣어도 변수에 들어있는 값을 복사해서 가지고 올라가기 때문에
+        // 함수의 동작이 변수에 영향을 미치지 않음
+        increase(num);
+        console.log("num = " + num + "<br>");
+
+    </script>
+</body>
+</html>

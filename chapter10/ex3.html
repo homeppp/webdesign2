@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+    <link rel="stylesheet" href="css/check.css">
+</head>
+<body>
+    <div id="container">
+        <h1>회원 가입</h1>
+        <form action="#" id="register">
+            <ul id="user-info">
+                <li>
+                    <label for="user-id" class="field">아이디</label>
+                    <input type="text" id="user-id" placeholder="4~15자리의 영문과 숫자로 입력">
+                </li>
+                <li>
+                    <label for="email" class="field">이메일</label>
+                    <input type="email" id="email">
+                </li>
+                <li>
+                    <label for="user-pw1" class="field">비밀번호</label>
+                    <input type="password" id="user-pw1" placeholder="8자리 이상">
+                </li>
+                <li>
+                    <label for="user-pw2" class="field">비밀번호 확인</label>
+                    <input type="password" id="user-pw2">
+                </li>
+                <li>
+                    <label class="field">메일링 수신</label>
+                    <label class="r"><input type="radio" name="mailing" value="yes">예</label>
+                    <label class="r"><input type="radio" name="mailing" value="no">아니오</label>
+                </li>
+            </ul>
+            <ul id="buttons">
+                <li>
+                    <button class="btn btnBlack" onclick="join()">가입하기</button>
+                </li>
+                <li>
+                    <button class="btn btnGray">취소</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <script>
+        function join() {
+            let putIdTag = document.querySelector("#user-id");
+            let putId = putIdTag.value;
+
+            // 아이디를 4자 미만 또는 15자를 초과해서 입력했을 때
+            if(putId.length < 4 || putId.length > 15){
+                // 4 ~ 15자리의 영문과 숫자를 사용하세요 를 출력
+                alert("아이디는 4 ~ 15자리의 영문과 숫자를 사용하세요");
+
+                return false;
+            }
+
+            let putPwTag = document.querySelector("#user-pw1");
+            let putPw = putPwTag.value;
+
+            // 비밀번호를 8자 미만 또는 20자를 초과해서 입력했을 때
+            if(putPw.length < 8 || putPw.length > 20){
+                // 8 ~ 20자리의 영문과 숫자를 사용하세요 를 출력
+                alert("비밀번호는 8 ~ 20자리의 영문과 숫자를 사용하세요");
+
+                return false;
+            }
+
+        }
+    </script>
+</body>
+</html>

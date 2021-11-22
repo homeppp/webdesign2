@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제하기</title>
+    <link rel="stylesheet" href="css/order.css">
+</head>
+<body>
+    <div id="container">
+        <form action="" name="order">
+            <fieldset>
+                <legend>주문 정보</legend>
+                <ul>
+                    <li>
+                        <label for="billingName" class="field">이름 : </label>
+                        <input type="text" class="input-box" id="billingName" name="billingName">
+                    </li>
+                    <li>
+                        <label for="billingTel" class="field">연락처 : </label>
+                        <input type="text" class="input-box" id="billingTel" name="billingTel">
+                    </li>
+                    <li>
+                        <label for="billingAddr" class="field">주소 : </label>
+                        <input type="text" class="input-box" id="billingAddr" name="billingAddr">
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+        <form action="" name="ship">
+            <fieldset>
+                <legend>배송 정보</legend>
+                <ul>
+                    <li>
+                        <input type="checkbox" name="shippingInfo" id="shippingInfo" onclick="fillInfo()">
+                        <label for="shippingInfo" class="check">주문 정보와 배송정보가 같습니다.</label>
+                    </li>
+                    <li>
+                        <label for="shippingName" class="field">이름 : </label>
+                        <input type="text" class="input-box" id="shippingName" name="shippingName">
+                    </li>
+                    <li>
+                        <label for="shippingTel" class="field">연락처 : </label>
+                        <input type="text" class="input-box" id="shippingTel" name="shippingTel">
+                    </li>
+                    <li>
+                        <label for="shippingAddr" class="field">주소 : </label>
+                        <input type="text" class="input-box" id="shippingAddr" name="shippingAddr">
+                    </li>
+                </ul>
+            </fieldset>
+            <button type="submit" class="order" onclick="clickPay(event)">결제하기</button>
+        </form>
+    </div>
+
+    <script>
+        function fillInfo() {
+            // 아래의 동작을 개선해서 체크박스를 체크했을 때는 주문정보의 이름, 연락처, 주소가
+            // 배송정보의 이름, 연락처, 주소로 채워지도록
+            // 체크박스를 체크해지했을 때는 정보가 사라지도록 코드를 수정
+
+            let checkbox = document.forms[1].elements[1];
+            // checkbox.checked -> checkbox의 check 여부를 알 수 있는 변수
+            // checkbox는 체크가 됐다 / 되지 않았다, 두 가지 상태 밖에 없음
+            // 두 가지 상태만 있을 때는 주로 boolean으로 표현
+            // true -> 체크가 됐다.
+            // false -> 체크가 되지 않았다.
+            // console.log(checkbox.checked);
+            
+
+            let orderForm = document.forms[0];
+            let billingNameTag = orderForm.elements[1];
+            let billingTelTag = orderForm.elements[2];
+            let billingAddrTag = orderForm.elements[3];
+
+            let billingName = billingNameTag.value;
+            let billingTel = billingTelTag.value;
+            let billingAddr = billingAddrTag.value;
+
+            // 주문 정보에 입력한 이름, 연락처, 주소를 가져왔으니까
+            // 나머지 동작(주문정보에 입력한 이름, 연락처, 주소를 배송정보의 이름, 연락처, 주소로 설정)을 구현하세요.
+            let shippingNameTag = document.forms[1].elements[2];
+            let shippingTelTag = document.forms[1].elements[3];
+            let shippingAddrTag = document.forms[1].elements[4];
+
+            if(checkbox.checked){
+                shippingNameTag.value = billingName;
+                shippingTelTag.value = billingTel;
+                shippingAddrTag.value = billingAddr;
+            } else {
+                shippingNameTag.value = "";
+                shippingTelTag.value = "";
+                shippingAddrTag.value = "";
+            }; 
+
+         
+        }
+
+        function clickPay(e) {
+            e.preventDefault();
+
+            let billTelTag = document.forms[0].elements[2];
+            let billTel = billTelTag.value;
+
+            alert("주문 정보의 연락처는 " + billTel + " 입니다.");
+        }
+
+        /*
+        // document.forms -> 현재 페이지의 form들에 접근
+        // forms 인 것처럼 form들을 배열에 담아서 보관
+        let formTagList = document.forms;
+        let firstForm = formTagList[0];
+        let secondForm = formTagList[1];
+
+        // firstForm.elements -> 폼 내 요소들이 들어있는 멤버변수
+        let elementsInFirstForm = firstForm.elements;
+        let elementsInSecondForm = secondForm.elements;
+
+        let element1_1 = elementsInFirstForm[0];
+        let element2_1 = elementsInSecondForm[0];
+
+        console.log(element1_1);
+        console.log(element2_1);
+        */
+
+        /*
+        function clickPay(e) {
+            e.preventDefault();
+
+            let billTelTag = document.forms["order"].elements["billingTel"];
+
+            let billTel = billTelTag.value;
+
+            alert("주문 정보의 연락처는 " + billTel + " 입니다.");
+        }
+
+        // let shipForm = document.ship;
+        // documnet.forms -> 페이지 내 모든 form이 배열에 담겨 있음
+        // document.forms["ship"] -> 현재 페이지에서 이름이 ship인 form에 접근
+        let shipForm = document.forms["ship"];
+
+        // let shippingName = document.ship.shippingName;
+        // document.forms["ship"].elements -> 현재 페이지에서 이름이 ship인 form에 접근해 form의 입력요소들에 접근
+        // document.forms["ship"].elements["shippingName"] -> 이름이 shippingName 인 입력 요소에 접근
+        let shippingName = document.forms["ship"].elements["shippingName"];
+
+        console.log(shipForm);
+
+        console.log(shippingName);
+        */
+    </script>
+</body>
+</html>

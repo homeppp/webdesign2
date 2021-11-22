@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <script>
+        // 1~9중 짝수만 반복적으로 출력
+        for(let num=1; num<=9; num++) {
+            if(num % 2 == 0) {
+                document.write(num + "<br>");
+            }
+        }
+        
+        // if 사용하지말고 초기식, 조건식, 증감식만 수정해서 짝수만 출력되도록
+        for(let count=2; count<=8; count = count + 2) {
+                document.write(count + "<br>");
+        }
+    </script>
+</body>
+</html>

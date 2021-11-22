@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제하기</title>
+    <link rel="stylesheet" href="css/order.css">
+</head>
+<body>
+    <div id="container">
+        <form action="" name="order">
+            <fieldset>
+                <legend>주문 정보</legend>
+                <ul>
+                    <li>
+                        <label for="billingName" class="field">이름 : </label>
+                        <input type="text" class="input-box" id="billingName" name="billingName">
+                    </li>
+                    <li>
+                        <label for="billingTel" class="field">연락처 : </label>
+                        <input type="text" class="input-box" id="billingTel" name="billingTel">
+                    </li>
+                    <li>
+                        <label for="billingAddr" class="field">주소 : </label>
+                        <input type="text" class="input-box" id="billingAddr" name="billingAddr">
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+        <form action="" name="ship">
+            <fieldset>
+                <legend>배송 정보</legend>
+                <ul>
+                    <li>                        
+                        <input type="checkbox" name="shippingInfo" id="shippingInfo" onclick="fillInfo()">
+                        <label for="shippingInfo" class="check">주문 정보와 배송정보가 같습니다.</label>
+                    </li>
+                    <li>
+                        <label for="shippingName" class="field">이름 : </label>
+                        <input type="text" class="input-box" id="shippingName" name="shippingName">
+                    </li>
+                    <li>
+                        <label for="shippingTel" class="field">연락처 : </label>
+                        <input type="text" class="input-box" id="shippingTel" name="shippingTel">
+                    </li>
+                    <li>
+                        <label for="shippingAddr" class="field">주소 : </label>
+                        <input type="text" class="input-box" id="shippingAddr" name="shippingAddr">
+                    </li>
+                </ul>
+            </fieldset>
+            <button type="submit" class="order" onclick="clickPay(event)">결제하기</button>
+        </form>
+    </div>
+
+    <script>
+        function fillInfo() {
+            let checkbox = document.querySelector("#shippingInfo");
+
+            let shippingNameTag = document.querySelector("#shippingName");
+            let shippingTelTag = document.querySelector("#shippingTel");
+            let shippingAddrTag = document.querySelector("#shippingAddr");
+
+            if(checkbox.checked){
+                // 필요한 곳에서만 연산할 수 있게끔 여기로 옮김
+                // 주문 정보의 이름, 연락처, 주소를 가져오는 코드
+                let billingNameTag = document.querySelector("#billingName");
+                let billingTelTag = document.querySelector("#billingTel");
+                let billingAddrTag = document.querySelector("#billingAddr");
+
+                let billingName = billingNameTag.value;
+                let billingTel = billingTelTag.value;
+                let billingAddr = billingAddrTag.value;
+                // 주문 정보의 이름, 연락처, 주소를 가져오는 코드
+
+                // 이름, 연락처, 주소 중 하나라도 입력하지 않았다면 "주문 정보를 입력하세요!"를 출력
+                if(billingName == "" || billingTel == "" || billingAddr == "") {
+                    alert("주문 정보를 입력하세요!");
+
+                    // return은 함수의 끝 이니까 사용자가 잘못 입력했거나 우리가 원하는 형식으로 입력하지 않았을 때
+                    // 올바르게 입력하세요 라는 의도로 안내를 하고 아래와 같이 return으로 흐름을 짜름
+                    return false;
+                } 
+
+                if(billingName.length > 20) { 
+                    alert("이름은 20자 내로 입력하세요.");
+
+                    return false;
+                } else if(billingTel.length > 13) {
+                    alert("연락처는 -(하이픈)을 포함해서 13자까지 입력할 수 있습니다.");
+                    
+                    return false;
+                } else if(billingAddr.length > 10) {
+                    alert("주소는 최대 10자까지 입력할 수 있습니다.");
+
+                    return false;
+                }
+
+                // billingAddr.indexOf("부산광역시") == -1 -> 사용자가 입력한 주소에 인천광역시가 포함되어 있지 않다면
+                if(billingAddr.indexOf("부산광역시") == -1 || billingAddr.indexOf("울산광역시") == -1 || billingAddr.indexOf("인천광역시") == -1) {
+                    alert("주소는 인천, 울산, 부산광역시 중 하나만 입력할 수 있습니다");
+                    
+                    return false;
+                }
+
+                if(billingTel.indexOf("-") == -1) {
+                    let first = billingTel.substring(0, 3);
+                    let second = billingTel.substring(3, 7);
+                    let third = billingTel.substring(7, 11);
+
+                    billingTel = first + "-" + second + "-" + third;
+                }
+
+                shippingNameTag.value = billingName.trim();
+                shippingTelTag.value = billingTel.trim();
+                shippingAddrTag.value = billingAddr.trim();
+
+            } else {
+                shippingNameTag.value = "";
+                shippingTelTag.value = "";
+                shippingAddrTag.value = "";
+            } 
+         
+        }
+
+    </script>
+</body>
+</html>

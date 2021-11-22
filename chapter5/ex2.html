@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <script>
+        // 60점 이상일 때만 통과와 짝짝짝 ~ 축하합니다가 출력되도록하려면?
+        let score = prompt("학생의 점수를 입력하세요.");
+
+        if(score >= 60)
+            document.write("통과 <br> 짝짝짝 ~ 축하합니다");
+        /*
+        if(score >= 60)
+            document.write("짝짝짝 ~ 축하합니다"); 
+        이렇게 추가하는 것도 가능
+        */
+         // document.write("짝짝짝 ~ 축하합니다")
+         // 컴퓨터는 if 문으로 안받아들이고 별개로 받아들여서 if 문과 별개로 출력됨
+     // document.write("짝짝짝 ~ 축하합니다") 이렇게 인식됨
+     // 개발할 때 들여쓰기를 사용하는 이유는 개발자가 보기 좋으라고 들여쓰기를 하는 것이므로 실제 코드의 동작에 영향을 미치지는 않음
+
+        if(score < 60)
+            document.write("재시험");
+    </script>
+</body>
+</html>

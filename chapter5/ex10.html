@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <script>
+        let weight = prompt("당신의 몸무게는?");
+        let height = prompt("당신의 키는?");
+        
+        let BMI = (weight / (height * height)) * 10000;
+        let status;
+
+        if(BMI < 18.5) {
+            // BMI 지수가 18.5 미만일 경우 저체중
+            status = "저체중";
+        } else if(BMI >= 18.5 && BMI < 23) {
+            // BMI 지수가 18.5 이상 ~ 23 미만일 경우 정상
+            status = "정상";
+        } else if(BMI >= 23 && BMI < 25) {
+            // BMI 지수가 23 이상 ~ 25 미만일 경우 과체중 의심
+            status = "과체중 의심";
+        } else if(BMI >= 25 && BMI < 30) {
+            // BMI 지수가 25 이상 ~ 30 미만일 경우 비만
+            status = "비만";
+        } else if(BMI >= 30) {
+            // BMI 지수가 30 이상일 경우 고도비만
+            status = "고도비만";
+        }
+
+        document.write("<h1>당신의 BMI 지수는 " + BMI + "입니다.</h1>");
+        document.write("<h1>당신의 현재 상태는 " + status + "입니다.</h1>")
+
+    </script>
+</body>
+</html>

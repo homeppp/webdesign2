@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <script>
+        function total(num1, num2) {
+            let sum = 0;
+            for(let i=num1; i<=num2; i++) {
+                if(i % 2 == 0) {
+                    sum = sum + i;
+                }
+            }
+            return sum;
+        }
+        let sum = total(1, 10);
+        document.write("sum = " + sum + "<br>");
+        sum = total(3, 5);
+        document.write("sum = " + sum + "<br>");
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <script>
+        let str = "Hello Thank you good luck to you";
+
+        let param1 = "Thank";
+        let param2 = "apple";
+
+        let newStr = "";
+        for(let i=0; i<str.length; i++) {
+            let isMatch = str[i] == param1[0];
+
+            if(isMatch) {
+                let isFullMatch  = str.indexOf(param1) != -1;
+                // indexOf 메서드의 역할을 하는 코드
+                /*
+                let isFullMatch = true;
+
+                for(let j=0; j<param1.length; j++) {
+                    let strIndex = i + j;
+
+                    if(str[strIndex] != param1[j]) {
+                        isFullMatch = false;
+                        break;
+                    } // end if
+                } // end for j 
+                */
+                // indexOf 메서드의 역할을 하는 코드
+                if(isFullMatch) {
+                    // param1 변수에 들어있는 문자열을 대상 문자열에서 찾았다면
+                    // 대상 문자열 내 param1 변수에 들어있는 문자열과 일치하는 문자열을 param2 무누자열로 바꿔주는 코드
+                    i = i + param2.length;
+                    for(let j=0; j<param2.length; j++) {
+                        newStr = newStr + param2[j];
+                    }
+
+                    let jump = param1.length - param2.length;
+                    i = i + jump - 1;
+                } else {
+                    newStr = newStr + str[i];
+                }
+            }else {
+                newStr = newStr + str[i];
+            } // end if
+        } // end for i
+
+        console.log("str = " + str);
+        console.log("newStr = " + newStr);
+/*
+        // replace(인자1, 인자2) -> replace 메서드는 인자가 2개가 필요함 대상 문자열 내 {인자1}문자열을 {인자2}문자열로 바꿔주는 메서드
+        //                         대상 문자열을 수정하는게 아닌바뀐 새로운 문자열이 그 자리를 대체함
+        // 프로그래밍은 항상 대소문자를 엄격히 구분하므로 인자1을 넣을 때 대소문자를 잘 확인해야함
+        let newStr = str.replace("Thank", "abc");
+
+        console.log("str = " + str);
+        console.log("newStr = " + newStr);
+*/
+
+        /*            --indexOf 여러 문자--
+        let str = "Hello Thank you good luck to you";
+        // indexOf메서드의 인자로 문자열을 넣으면 대상 문자열 안에서 인자로 넣은 문자열을 찾아줌
+        // 문자열을 찾았으면 찾은 문자열의 시작 문자의 인덱스 번호를 알려줌
+        // 문자열을 찾지 못했으면 -1을 알려줌
+        // let index = str.indexOf("od");
+        // console.log("od는 str 안에서 " + index + "번 인덱스에 위치해 있음");
+        let want = "He";
+
+        let count = 0;
+
+        // str의 처음부터 끝까지 하나씩 순회하는 반복문
+        for(let nth=0; nth<str.length; nth++) {
+            // str의 n번 인덱스의 문자와 want의 0번 인덱스의 문자가 같은지 여부를 저장하는 변수
+            // true  - 두 문자열이 일치한다.
+            // false - 두 문자열이 일치하지 않는다.
+            let isMatch = str[nth] == want[0];
+
+            // str의 nth번 인덱스의 문자와 want의 0번 인덱스 문자가 같다면
+            if(isMatch) {
+                // if문 안으로 들어오면 isMatch 변수의 역할이 바뀜
+                // << if문 안으로 들어왔을 때 isMatch 변수의 역할 >> 
+                // str의 nth번을 포함한 이후의 문자열과 want의 문자열이 일치하는지 여부를 저장하는 변수
+
+                for(let i =0; i<want.length; i++) {
+                    let strIndex = nth + i;
+                    
+                    if(str[strIndex] != want[i]) {
+                        isMatch = false;
+                        // break를 감싸고 있는 for문 밖으로 나감
+                        break;
+                    } // end if strIndex
+
+                    
+                } // end for i
+            } // end if nth 
+            if(isMatch) { 
+                // break를 감싸고 있는 for문 밖으로 나감 -> count++를 거치지 않고 나감
+                break;
+            }
+            count++;
+        }// end for nth
+
+        console.log("찾고자 하는 문자열 " + want + " 는 " + count + "번 인덱스에 들어있습니다.")
+        */
+        /*                      ㅡㅡindexOf 한글자ㅡㅡ
+        let str = "Hello Thank you good luck to you";
+        // indexOf(인자) -> 인자가 하나 필요한 메서드, 대상 문자열에서 인자로 넣은 문자의 인덱스 번호를 알려주는 메서드
+        //                 인자로 넣은 문자의 인덱스 번호가 indexOf 자리를 대신함
+        //                 인자로 넣은 문자를 대상 문자열에서 찾지 못했을 때는 -1이 됨
+        // let index = str.indexOf("y");
+        // 문제가 하나 있는데 찾고자 하는 문자가 z일 때 (찾고자 하는 문자가 대상 문자열에 없을 때)
+        // 그 때는 -1이 출력되어야 하는데 문자열의 길이가 출력되고 있음
+        // 이 문제를 해결하세요.
+        let count = 0;
+        for(let i=0; i<str.length; i++) {
+            if(str[i] != "z") {
+                // 대상 문자열의 n번째 문자가 y가 아니라면 숫자를 하나 증가(카운팅)
+                count++;
+            } else {
+                // 대상 문자열의 n번째 문자가 y라면 스탑!(break)
+                break;
+            } 
+        } if(count == str.length) {
+            // 반복문이 끝나고 나서도 못찾았을때 -1 을 보여줘야 하기 때문에 반복문 뒤에 입력
+            count = -1;
+        }
+        
+        console.log("z의 인덱스 번호 = " + count);
+        */
+        /*                     --charAt--
+        let str = "Hello Thank you good luck to you";
+        // charAt(인자) -> 인자가 하나 필요한 메서드, 대상 문자열에서 {인자}번 인덱스에 있는 문자 하나를 알려주는 메서드
+        //                그 자리에 있는 문자가 charAt 자리를 대신하게 됨
+        // let ch = str.charAt(16);
+        // let ch = str[16];
+        
+        // console.log("17번 째(16번 인덱스) 있는 문자 = " + ch);
+        */
+        
+        /*        --문자열--
+        let val1 = parseInt"10";
+        let val2 = Number"20";
+        let result1 = val1 + val2;
+        
+        // let str1 = "Hello JavaScript!";
+        let str1 = new String("Hello JavaScript");
+
+        let str2 = "안녕!";
+        let str3 = " ";
+        // str4는 빈문자열 이라고 부름
+        let str4 = "";
+
+        document.write(str1.length + "<br>");
+        document.write(str2.length + "<br>");
+        document.write(str3.length + "<br>");
+        document.write(str4.length + "<br>");
+        */
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <script>
+        let kor = prompt("국어점수 입력");
+
+        document.write("<p>사용자가 입력한 국어점수 = " + kor + "</p>");
+
+        // 0 이상의 값을 입력했을 때는 결과가 true
+        document.write("<p>0 이상 = " + (kor >= 0) + "</p>");
+        // 100 이하의 값을 입력했을 때는 결과가 true
+        document.write("<p>100 이하 = " + (kor <= 100) + "</p>");
+
+        // 우리가 국어점수는 0 ~ 100점 사이의 값이라고 정했음
+        // 16, 18번째 줄의 비교 연산의 결과를 보면 사용자가 입력한 국어점수가 0 ~ 100점 사이일 때는 모두 true가 됨
+        // 사용자가 입력한 국어점수가 0 ~ 100점 사이가 아닐 때(예 : -1, 101, ...)는 두 연산 중 하나가 false가 됨
+
+        // kor이 0 이상인가요? 그리고 kor이 100 이하인가요?
+        // -> kor이 0 이상이고 100 이하의 수인가요?
+        // && 연산자의 이름이 and 연산자인 것처럼 문제에서 또는 회의를 통해서 얘기한 문장 중, "그리고" 또는 "이고" 라는 말이 있으면 그 자리는 && 연산을 사용하면 됨
+        let result = (kor >= 0) && (kor <= 100);
+        document.write("<p>0 이상 and 100 이하 = " + result + "</p>");
+
+        // 국어점수를 55, -1, 101 차례대로 입력하면서 아래 코드의 동작 원리를 파악하세요.
+        // kor이 0 작나요? 또는 kor이 100 보다 큰가요?
+        // -> kor이 0 보다 작거나 100 보다 큰가요?
+        // || 연산자의 이름이 oor 연산자인 것처럼 문제에서 또는 회의를 통해서 얘기한 문장 중, "이거나" 또는 "또는" 이라는 말이 있으면 그 자리는 || 연산을 사용하면 됨
+        result = (kor < 0) || (kor > 100);
+        document.write("<p>0 미만 or 100 초과 = " + result + "</p>")
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+    <link rel="stylesheet" href="css/nameList.css">
+</head>
+<body>
+    <div id="container">
+        <h1>참가 신청</h1>
+        <div>
+            <input type="text" id="userName" placeholder="이름">
+            <button type="button" onclick="newRegister()">신청</button>
+        </div>
+        <hr>
+        <div id="nameList"></div>
+    </div>
+
+    <script>
+        function newRegister() {
+            let nameListTag1 = document.querySelector("#nameList");
+
+            // hasChildNodes() -> 해당 태그에 자식 태그가 들어있는지 확인하는 메서드
+            console.log(nameListTag1.hasChildNodes());
+
+            // 아래 코드는 첫 번째 신청자의 이름을 갖고 있는 태그에 접근해 firstNode 변수에 저장
+            // let firstNode = nameListTag1[0];
+            // hasChildNodes() -> 자식 태그가 들어있는지 확인해주는 메서드인데 태그를 DOM 구조로 그렸을 때 
+            // 태그 내 attribute노드, text노드 등 자식 노드가 달려있으면 자식태그가 들어있다고 인식
+            // console.log(firstNode.hasChildNodes());
+
+            // let nameList = document.querySelectorAll("#nameList > p");
+            // 아래 코드는 아이디가 nameList인 태그에 접근한다. (document.querySelector("#nameList"))
+            // 그 다음 해당 태그의 자식 태그에 접근한다. (document.querySelector("#nameList").childNodes)
+            let nameList = document.querySelector("#nameList").childNodes;
+            
+            for(let index=0; index < nameList.length; index++) {
+                let nthName = nameList[index];
+                console.log(nthName.innerText);
+            }
+            
+            var userNameTag = document.querySelector("#userName");
+            // userNameTag 변수에 들어있는 값이 input 태그임
+            // input 태그에 입력한 값을 가져오려면 value 멤버 변수에 접근하면 됨
+            var userName = userNameTag.value;
+            
+            if(userName == "") {
+                // 신청 버튼을 눌렀을 때 참가자의 이름이 입력되어 있지 않다면 alert등으로 "이름을 입력하세요!" 출력
+                alert("이름을 입력하세요!");
+            } else {
+                // 아이디가 nameList인 div 태그 안에 사용자가 입력한 이름을 갖고 있는 p 태그를 추가할 예정
+                var newP = document.createElement("p");
+
+                var userNameTextNode = document.createTextNode(userName);
+
+                newP.appendChild(userNameTextNode);
+
+                var nameListTag = document.querySelector("#nameList");
+                // appendChild() -> 이 메서드는 메서드의 이름 그대로 부모 태그가 자식 태그를 추가하는 메서드
+                // 부모태그.appendChild() 로 사용해야함
+                nameListTag.appendChild(newP);
+
+                userNameTag.value = "";
+            }
+
+        }
+    </script>
+</body>
+</html>

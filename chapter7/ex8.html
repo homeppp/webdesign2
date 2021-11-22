@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+</head>
+<body>
+    <script>
+        let ageArray = [21, 21, 23, 22];
+        // let avg = ageArray[0] + ageArray[1] + ageArray[2] + ageArray[3];
+
+
+        // 1. 변하는 부분 : 인덱스 번호
+        // 2. 변하지 않는 부분 : avg = avg + ageArray
+        let avg = ageArray[0];
+
+        for(let index=1; index<=ageArray.length; index++) {
+            avg = avg + ageArray[index];
+        }
+
+        avg = avg / ageArray.length;
+
+        console.log("평균 나이 = " + avg);
+    </script>
+</body>
+</html>

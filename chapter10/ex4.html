@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert page title</title>
+    <link rel="stylesheet" href="css/getForm.css">
+</head>
+<body>
+    <div id="container">
+        <h1>수강신청</h1>
+        <form action="#" name="testForm">
+            <fieldset>
+                <legend>신청인</legend>
+                <ul>
+                    <li>
+                        <label for="userName" class="reg">이름</label>
+                        <input type="text" name="userName" id="userName">
+                    </li>
+                    <li>
+                        <label for="class" class="reg">학과</label>
+                        <select name="major" id="major" onclick="displaySelect()">
+                            <option>----- 학과 선택 -----</option>
+                            <option value="archi">건축공학과</option>
+                            <option value="mechanic">기계공학과</option>
+                            <option value="indust">산업공학과</option>
+                            <option value="elec">전기전자공학과</option>
+                            <option value="computer">컴퓨터공학과</option>
+                            <option value="chemical">화학공학과</option>
+                        </select>
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <legend>신청 과목</legend>
+                <p>이 달에 신청할 과목을 선택하세요.</p>
+                <label><input type="radio" name="subject" value="speaking" onclick="clickSubject()">회화</label>
+                <label><input type="radio" name="subject" value="grammar" onclick="clickSubject()">문법</label>
+                <label><input type="radio" name="subject" value="writing" onclick="clickSubject()">작문</label>
+            </fieldset>
+            <fieldset>
+                <legend>메일링</legend>
+                <p>메일로 받고 싶은 뉴스 주제를 선택하세요.</p>
+                <label><input type="checkbox" name="mailing" value="news" onclick="clickMailing()">해외 단신</label>
+                <label><input type="checkbox" name="mailing" value="dialog" onclick="clickMailing()">5분 회화</label>
+                <label><input type="checkbox" name="mailing" value="pops" onclick="clickMailing()">모닝 팝스</label>
+            </fieldset>
+        </form>
+    </div>
+    <script>
+        function clickMailing() {
+            let checkBtns = document.testForm.mailing;
+            let mailingList = ["해외 단신", "5분 회화", "모닝 팝스"];
+
+            // 현재 클릭한 메일링 뉴스 주제들
+            let mailing = "";
+            // 현재 클릭한 메일링 뉴스 주제의 개수
+            let count = 0;
+            for(let i=0; i<checkboxBtns.length; i++) {
+                // n번째 체크박스
+                let nthCheck = checkBtns[i];
+                let mailText = mailingList[i];
+
+                // n번째 체크박스를 체크했다면
+                if(nthCheck.checked) {
+                    // n번째 체크박스에 맞는 메일링 뉴스 주제를 저장
+                    mailing = mailing + mailText + ",";
+                    count++;
+                }
+            }
+            alert("현재 " + count + "개 체크하였음 >> " + mailing);
+        }
+
+        let checkboxBtns = document.testForm.mailing;
+
+        console.log(checkboxBtns);
+
+        for(let i=0; i<checkboxBtns.length; i++) {
+            console.log(checkboxBtns[i].value);
+        }
+
+        function clickSubject() {
+            let radioBtns = document.testForm.subject;
+            
+            let subjectList = ["회화", "문법", "작문"];
+            
+            for(let i=0; i<radioBtns.length; i++) {
+                let speakText = subjectList[i];
+                let nthRadio = radioBtns[i];
+
+                if(nthRadio.checked) {
+                    alert(speakText);
+                }
+            }
+        }
+
+        let radioBtns = document.testForm.subject;
+        console.log(radioBtns);
+
+        for(let i=0; i<radioBtns.length; i++) {
+            console.log(radioBtns[i]);
+        }
+
+        for(let i=0; i<radioBtns.length; i++) {
+            console.log(radioBtns[i].value);
+        }
+
+        function displaySelect() {
+            let options = document.testForm.major.options;
+
+            let selectedIndex = options.selectedIndex;
+
+            let selectedOption = options[selectedIndex];
+            console.log(selectedOption.innerText);
+        }
+
+        let selectTag = document.querySelector("#major");
+        // select 태그 안에 들어있는 option 태그들에 접근
+        let options = selectTag.options;
+
+        for(let i=0; i<options.length; i++) {
+            console.log(options[i]);
+        }
+
+        // 옵션 태그의 처음부터 끝까지 접근해서 옵션 태그들이 갖고 있는 text를 출력하세요.
+        for(let i=0; i<options.length; i++) {
+            console.log(options[i].innerText);
+        }
+        // 옵션 태그의 처음부터 끝까지 접근해서 옵션 태그들의 value 속성을 출력하세요.
+        for(let i=0; i<options.length; i++) {
+            console.log(options[i].value);
+        }
+    </script>
+</body>
+</html>
